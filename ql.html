@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="fullheight">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <style type="text/css">
+    .fullheight {
+        height: 100%;
+    }
+    </style>
+    <script type="text/javascript">
+    var countdown = ["③", "②", "①"];
+
+    function interval(func, wait, times) {
+        var interv = function(w, t) {
+            return function() {
+                if (typeof t === "undefined" || t-- > 0) {
+                    setTimeout(interv, w);
+                    try {
+                        func.call(null, t);
+                    } catch (e) {
+                        t = 0;
+                        throw e.toString();
+                    }
+                }
+            };
+        }(wait, times);
+
+        setTimeout(interv, wait);
+    };
+
+    function flash(t) {
+        $(".card-text").number(t * 1234567);
+    }
+
+    function count(t) {
+        $(".card-text").text(countdown[2 - t]);
+    }
+    </script>
+</head>
+
+<body class="fullheight">
+    <div class="card card-inverse text-center fullheight" style="background-color: #333; border-color: #333;">
+        <div class="card-header" style="font-size: 5vw">
+            学前组视频心算题 - 第一组
+        </div>
+        <div class="card-block" style="display: flex;">
+            <h1 class="card-text" style="margin: auto; font-size: 20vw">123,456</h1>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-outline-danger disabled" style="font-size: 5vw" onclick="">上一组</button>
+                    <button type="button" class="btn btn-outline-success" style="font-size: 5vw" onclick="interval(count, 1000, 3);">出题</button>
+                    <button type="button" class="btn btn-outline-danger" style="font-size: 5vw" onclick="">下一组</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js " integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n " crossorigin="anonymous "></script>
+    <script src="jquery.number.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js " integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb " crossorigin="anonymous "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js " integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn " crossorigin="anonymous "></script>
+</body>
+
+</html>
