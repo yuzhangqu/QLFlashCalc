@@ -4,13 +4,14 @@ function Group(digits, total, mix, negative, time) {
     this.mix = mix;
     this.negative = negative;
     this.nums = new Array(total);
-    this.time = time;
+    this.millisec = time * 1000;
+    this.answer = 0;
 }
 
 Group.prototype.generate = function(qIndex) {
     do {
         var index = 0;
-        if (qIndex == this.mix) {
+        if (qIndex >= this.mix) {
             for (var i = 0; i < this.total - this.negative; i++) {
                 this.nums[index++] = this.nextPositiveInt();
             }
@@ -24,8 +25,10 @@ Group.prototype.generate = function(qIndex) {
         }
     } while (this.negativeSum());
 
+    this.answer = this.nums.reduce((a, b) => a + b, 0);
+
     do {
-        for (var i = this.nums.length - 1; i > 0; i--) {
+        for (var i = this.total - 1; i > 0; i--) {
             this.swap(i, Math.floor(Math.random() * (i + 1)));
         }
     } while (this.invalid());
@@ -43,7 +46,7 @@ Group.prototype.nextNegativeInt = function() {
 
 Group.prototype.negativeSum = function() {
     var sum = 0;
-    for (var i = 0; i < this.nums.length; i++) {
+    for (var i = 0; i < this.total; i++) {
         sum += this.nums[i];
     }
     return sum < 0;
@@ -56,10 +59,11 @@ Group.prototype.swap = function(i, j) {
 }
 
 Group.prototype.invalid = function() {
-    var sum = 0;
-    for (var i = 0; i < this.nums.length; i++) {
+    var old = this.nums[0];
+    var sum = old;
+    for (var i = 1; i < this.total; i++) {
         sum += this.nums[i];
-        if (sum < 0) {
+        if (sum < 0 || old == this.nums[i]) {
             return true;
         }
     }

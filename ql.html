@@ -13,7 +13,7 @@
     }
     </style>
     <script type="text/javascript">
-    var countdown = ["③", "②", "①", ""];
+    var countStrs = ["③", "②", "①"];
     var gStrs = ["第{0}组", "第一组", "第二组", "第三组", "第四组", "第五组", "第六组", "第七组", "第八组", "第九组"];
     var qStrs = ["第{1}题", "第1题", "第2题", "第3题"];
     var headText = "学前组视频心算题 -";
@@ -22,36 +22,45 @@
     var gObjs = new Array(10);
     var gMixObjs = new Array(10);
 
-    function interval(func, wait, times) {
-        var interv = function(w, t) {
-            return function() {
-                if (typeof t === "undefined" || t-- > 0) {
-                    setTimeout(interv, w);
-                    try {
-                        func.call(null, t);
-                    } catch (e) {
-                        t = 0;
-                        throw e.toString();
-                    }
+    function repeat(begin, end, time, func) {
+        return function() {
+            func.call(null, begin, end);
+            if (begin < end) {
+                if (begin++ < end) {
+                    setTimeout(repeat(begin, end, time, func), time);
                 }
-            };
-        }(wait, times);
+            } else if (begin > end) {
+                if (begin-- > end) {
+                    setTimeout(repeat(begin, end, time, func), time);
+                }
+            } else {}
+        };
+    }
 
-        setTimeout(interv, wait);
-    };
-
-    function flash(t) {
-        $(".card-text").number(gObjs[gIndex].nums[gObjs[gIndex].nums.length - t]);
-        if (t == 0) {
+    function showQuiz(begin, end) {
+        if (begin == end) {
+            $(".card-text").text("");
             $("#go").removeClass("disabled");
             $("#go").attr("disabled", false);
+        } else {
+            $(".card-text").text(gObjs[gIndex].nums[begin]);
         }
     }
 
-    function count(t) {
-        $(".card-text").text(countdown[3 - t]);
-        if (t == 0) {
-            interval(flash, gObjs[gIndex].time / gObjs[gIndex].nums.length * 1000, gObjs[gIndex].nums.length);
+    function showCount(begin, end) {
+        if (begin == end) {
+            $(".card-text").text("");
+            setTimeout(repeat(0, gObjs[gIndex].total, gObjs[gIndex].millisec / gObjs[gIndex].total, showQuiz), 0);
+        } else {
+            $(".card-text").text(countStrs[begin]);
+        }
+    }
+
+    function showAnswer() {
+        if ($(".card-text").text().length > 0) {
+            $(".card-text").text("");
+        } else {
+            $(".card-text").text(gObjs[gIndex].answer);
         }
     }
 
@@ -66,26 +75,17 @@
         gObjs[7] = new Group7();
         gObjs[8] = new Group8();
         gObjs[9] = new Group9();
-
-        gMixObjs[1] = new Group1(true);
-        gMixObjs[2] = new Group2(true);
-        gMixObjs[3] = new Group3(true);
-        gMixObjs[4] = new Group4(true);
-        gMixObjs[5] = new Group5(true);
-        gMixObjs[6] = new Group6(true);
-        gMixObjs[7] = new Group7(true);
-        gMixObjs[8] = new Group8(true);
-        gMixObjs[9] = new Group9(true);
     }
 
     function prevGroup() {
         if (gIndex > 0) {
             gIndex--;
+            qIndex = 1;
             if (gIndex <= 1) {
                 $("#prev").addClass("disabled");
                 $("#prev").attr("disabled", true);
             }
-            if (gIndex < 9) {
+            if (gIndex < (gStrs.length - 1)) {
                 $("#next").removeClass("disabled");
                 $("#next").attr("disabled", false);
             }
@@ -94,25 +94,34 @@
     }
 
     function nextGroup() {
-        if (gIndex < 9) {
+        if (gIndex < (gStrs.length - 1)) {
             gIndex++;
+            qIndex = 1;
             if (gIndex > 1) {
                 $("#prev").removeClass("disabled");
                 $("#prev").attr("disabled", false);
             }
-            if (gIndex >= 9) {
+            if (gIndex >= (gStrs.length - 1)) {
                 $("#next").addClass("disabled");
                 $("#next").attr("disabled", true);
             }
-            init();
+            $(".card-header").text(headText + " " + gStrs[gIndex] + " " + qStrs[qIndex]);
         }
     }
 
     function go() {
-        gObjs[1].generate();
-        $("#go").addClass("disabled");
-        $("#go").attr("disabled", true);
-        interval(count, 1000, 4);
+        if (qIndex > gObjs[gIndex].mix && gIndex < (gStrs.length - 1)) {
+            nextGroup();
+        }
+        if (qIndex > gObjs[gIndex].mix && gIndex >= (gStrs.length - 1)) {
+            $(".card-text").text("比赛结束");
+        } else {
+            $(".card-header").text(headText + " " + gStrs[gIndex] + " " + qStrs[qIndex]);
+            gObjs[gIndex].generate(qIndex++);
+            $("#go").addClass("disabled");
+            $("#go").attr("disabled", true);
+            setTimeout(repeat(0, 3, 1000, showCount), 0);
+        }
     }
     </script>
 </head>
@@ -122,8 +131,8 @@
         <div class="card-header" style="font-size: 5vw">
             学前组视频心算题 - 第一组 第1题
         </div>
-        <div class="card-block" style="display: flex;">
-            <h1 class="card-text" style="margin: auto; font-size: 18vw; font-family: Times">123,456</h1>
+        <div class="card-block" style="display: flex;" onclick="showAnswer();">
+            <h1 class="card-text" style="margin: auto; font-size: 18vw; font-family: Times">点击开始</h1>
         </div>
         <div class="card-footer text-muted">
             <div class="row">
