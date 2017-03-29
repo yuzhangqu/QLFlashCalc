@@ -35,8 +35,8 @@ Group.prototype.nextNegativeInt = function() {
 
 Group.prototype.negativeSum = function() {
     var sum = 0;
-    for (x in this.nums) {
-        sum += x;
+    for (var i = 0; i < this.nums.length; i++) {
+        sum += this.nums[i];
     }
     return sum < 0;
 }
@@ -49,8 +49,8 @@ Group.prototype.swap = function(i, j) {
 
 Group.prototype.invalid = function() {
     var sum = 0;
-    for (x in this.nums) {
-        sum += x;
+    for (var i = 0; i < this.nums.length; i++) {
+        sum += this.nums[i];
         if (sum < 0) {
             return true;
         }
@@ -58,7 +58,7 @@ Group.prototype.invalid = function() {
     return false;
 }
 
-function Group1(mix) {
+function Group1(mix = false) {
     if (mix) {
         Group.call(this, 2, 7, 3);
     } else {
