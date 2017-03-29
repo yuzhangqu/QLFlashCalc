@@ -41,9 +41,9 @@
         if (begin == end) {
             $(".card-text").text("");
             $("#go").removeClass("disabled");
-            $("#go").attr("disabled", false);
+            flushButton();
         } else {
-            $(".card-text").text(gObjs[gIndex].nums[begin]);
+            $(".card-text").number(gObjs[gIndex].nums[begin]);
         }
     }
 
@@ -60,7 +60,7 @@
         if ($(".card-text").text().length > 0) {
             $(".card-text").text("");
         } else {
-            $(".card-text").text(gObjs[gIndex].answer);
+            $(".card-text").number(gObjs[gIndex].answer);
         }
     }
 
@@ -77,39 +77,43 @@
         gObjs[9] = new Group9();
     }
 
+    function flushButton() {
+        if (gIndex <= 1) {
+            $("#prev").addClass("disabled");
+        }
+        if (gIndex < (gStrs.length - 1)) {
+            $("#next").removeClass("disabled");
+        }
+        if (gIndex > 1) {
+            $("#prev").removeClass("disabled");
+        }
+        if (gIndex >= (gStrs.length - 1)) {
+            $("#next").addClass("disabled");
+        }
+    }
+
     function prevGroup() {
-        if (gIndex > 0) {
+        if (gIndex > 0 && !$("#prev").hasClass("disabled")) {
             gIndex--;
             qIndex = 1;
-            if (gIndex <= 1) {
-                $("#prev").addClass("disabled");
-                $("#prev").attr("disabled", true);
-            }
-            if (gIndex < (gStrs.length - 1)) {
-                $("#next").removeClass("disabled");
-                $("#next").attr("disabled", false);
-            }
+            flushButton();
             $(".card-header").text(headText + " " + gStrs[gIndex] + " " + qStrs[qIndex]);
         }
     }
 
     function nextGroup() {
-        if (gIndex < (gStrs.length - 1)) {
+        if (gIndex < (gStrs.length - 1) && !$("#next").hasClass("disabled")) {
             gIndex++;
             qIndex = 1;
-            if (gIndex > 1) {
-                $("#prev").removeClass("disabled");
-                $("#prev").attr("disabled", false);
-            }
-            if (gIndex >= (gStrs.length - 1)) {
-                $("#next").addClass("disabled");
-                $("#next").attr("disabled", true);
-            }
+            flushButton();
             $(".card-header").text(headText + " " + gStrs[gIndex] + " " + qStrs[qIndex]);
         }
     }
 
     function go() {
+        if ($("#go").hasClass("disabled")) {
+            return false;
+        }
         if (qIndex > gObjs[gIndex].mix && gIndex < (gStrs.length - 1)) {
             nextGroup();
         }
@@ -118,8 +122,9 @@
         } else {
             $(".card-header").text(headText + " " + gStrs[gIndex] + " " + qStrs[qIndex]);
             gObjs[gIndex].generate(qIndex++);
+            $("#prev").addClass("disabled");
             $("#go").addClass("disabled");
-            $("#go").attr("disabled", true);
+            $("#next").addClass("disabled");
             setTimeout(repeat(0, 3, 1000, showCount), 0);
         }
     }
@@ -132,12 +137,12 @@
             学前组视频心算题 - 第一组 第1题
         </div>
         <div class="card-block" style="display: flex;" onclick="showAnswer();">
-            <h1 class="card-text" style="margin: auto; font-size: 18vw; font-family: Times">点击开始</h1>
+            <h1 class="card-text" style="margin: auto; font-size: 18vw; font-family: Times"></h1>
         </div>
         <div class="card-footer text-muted">
             <div class="row">
                 <div class="col">
-                    <button id="prev" type="button" class="btn btn-outline-danger disabled" style="font-size: 5vw" onclick="prevGroup();" disabled="disabled">上一组</button>
+                    <button id="prev" type="button" class="btn btn-outline-danger disabled" style="font-size: 5vw" onclick="prevGroup();">上一组</button>
                     <button id="go" type="button" class="btn btn-outline-success" style="font-size: 5vw" onclick="go();">出题</button>
                     <button id="next" type="button" class="btn btn-outline-danger" style="font-size: 5vw" onclick="nextGroup();">下一组</button>
                 </div>
