@@ -13,7 +13,12 @@
     }
     </style>
     <script type="text/javascript">
-    var countdown = ["③", "②", "①"];
+    var countdown = ["③", "②", "①", ""];
+    var gStrs = ["第{0}组", "第一组", "第二组", "第三组", "第四组", "第五组", "第六组", "第七组", "第八组", "第九组"];
+    var qStrs = ["第{1}题", "第1题", "第2题", "第3题"];
+    var headText = "学前组视频心算题 -";
+    var gIndex = 1;
+    var qIndex = 1;
 
     function interval(func, wait, times) {
         var interv = function(w, t) {
@@ -38,25 +43,69 @@
     }
 
     function count(t) {
-        $(".card-text").text(countdown[2 - t]);
+        $(".card-text").text(countdown[3 - t]);
+        if (t == 0) {
+            $("#go").removeClass("disabled");
+            $("#go").attr("disabled", false);
+        }
+    }
+
+    function init() {
+        $(".card-header").text(headText + " " + gStrs[gIndex] + " " + qStrs[qIndex]);
+    }
+
+    function prevGroup() {
+        if (gIndex > 0) {
+            gIndex--;
+            if (gIndex <= 1) {
+                $("#prev").addClass("disabled");
+                $("#prev").attr("disabled", true);
+            }
+            if (gIndex < 9) {
+                $("#next").removeClass("disabled");
+                $("#next").attr("disabled", false);
+            }
+            init();
+        }
+    }
+
+    function nextGroup() {
+        if (gIndex < 9) {
+            gIndex++;
+            if (gIndex > 1) {
+                $("#prev").removeClass("disabled");
+                $("#prev").attr("disabled", false);
+            }
+            if (gIndex >= 9) {
+                $("#next").addClass("disabled");
+                $("#next").attr("disabled", true);
+            }
+            init();
+        }
+    }
+
+    function go() {
+        $("#go").addClass("disabled");
+        $("#go").attr("disabled", true);
+        interval(count, 1000, 4);
     }
     </script>
 </head>
 
-<body class="fullheight">
+<body class="fullheight" onload="init();">
     <div class="card card-inverse text-center fullheight" style="background-color: #333; border-color: #333;">
         <div class="card-header" style="font-size: 5vw">
-            学前组视频心算题 - 第一组
+            学前组视频心算题 - 第一组 第1题
         </div>
         <div class="card-block" style="display: flex;">
-            <h1 class="card-text" style="margin: auto; font-size: 20vw">123,456</h1>
+            <h1 class="card-text" style="margin: auto; font-size: 18vw; font-family: Times">123,456</h1>
         </div>
         <div class="card-footer text-muted">
             <div class="row">
                 <div class="col">
-                    <button type="button" class="btn btn-outline-danger disabled" style="font-size: 5vw" onclick="">上一组</button>
-                    <button type="button" class="btn btn-outline-success" style="font-size: 5vw" onclick="interval(count, 1000, 3);">出题</button>
-                    <button type="button" class="btn btn-outline-danger" style="font-size: 5vw" onclick="">下一组</button>
+                    <button id="prev" type="button" class="btn btn-outline-danger disabled" style="font-size: 5vw" onclick="prevGroup();" disabled="disabled">上一组</button>
+                    <button id="go" type="button" class="btn btn-outline-success" style="font-size: 5vw" onclick="go();">出题</button>
+                    <button id="next" type="button" class="btn btn-outline-danger" style="font-size: 5vw" onclick="nextGroup();">下一组</button>
                 </div>
             </div>
         </div>
@@ -65,6 +114,7 @@
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js " integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n " crossorigin="anonymous "></script>
     <script src="jquery.number.min.js"></script>
+    <script src="string-format.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js " integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb " crossorigin="anonymous "></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js " integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn " crossorigin="anonymous "></script>
 </body>

@@ -1,0 +1,3 @@
+function LV() {
+    this.digits;
+}
