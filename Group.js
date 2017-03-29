@@ -1,18 +1,26 @@
-function Group(digits, positive, negative) {
+function Group(digits, total, mix, negative, time) {
     this.digits = digits;
-    this.positive = positive;
+    this.total = total;
+    this.mix = mix;
     this.negative = negative;
-    this.nums = new Array(positive + negative);
+    this.nums = new Array(total);
+    this.time = time;
 }
 
-Group.prototype.generate = function() {
+Group.prototype.generate = function(qIndex) {
     do {
         var index = 0;
-        for (var i = 0; i < this.positive; i++) {
-            this.nums[index++] = this.nextPositiveInt();
-        }
-        for (var i = 0; i < this.negative; i++) {
-            this.nums[index++] = this.nextNegativeInt();
+        if (qIndex == this.mix) {
+            for (var i = 0; i < this.total - this.negative; i++) {
+                this.nums[index++] = this.nextPositiveInt();
+            }
+            for (var i = 0; i < this.negative; i++) {
+                this.nums[index++] = this.nextNegativeInt();
+            }
+        } else {
+            for (var i = 0; i < this.total; i++) {
+                this.nums[index++] = this.nextPositiveInt();
+            }
         }
     } while (this.negativeSum());
 
@@ -58,13 +66,56 @@ Group.prototype.invalid = function() {
     return false;
 }
 
-function Group1(mix = false) {
-    if (mix) {
-        Group.call(this, 2, 7, 3);
-    } else {
-        Group.call(this, 2, 10, 0);
-    }
+function Group1() {
+    Group.call(this, 2, 10, 3, 3, 7);
 }
-
 Group1.prototype = Object.create(Group.prototype);
 Group1.prototype.constructor = Group1;
+
+function Group2() {
+    Group.call(this, 2, 15, 3, 5, 10);
+}
+Group2.prototype = Object.create(Group.prototype);
+Group2.prototype.constructor = Group2;
+
+function Group3() {
+    Group.call(this, 3, 10, 2, 3, 9);
+}
+Group3.prototype = Object.create(Group.prototype);
+Group3.prototype.constructor = Group3;
+
+function Group4() {
+    Group.call(this, 3, 20, 2, 7, 15);
+}
+Group4.prototype = Object.create(Group.prototype);
+Group4.prototype.constructor = Group4;
+
+function Group5() {
+    Group.call(this, 4, 10, 2, 3, 10);
+}
+Group5.prototype = Object.create(Group.prototype);
+Group5.prototype.constructor = Group5;
+
+function Group6() {
+    Group.call(this, 4, 20, 2, 7, 15);
+}
+Group6.prototype = Object.create(Group.prototype);
+Group6.prototype.constructor = Group6;
+
+function Group7() {
+    Group.call(this, 5, 10, 2, 3, 9);
+}
+Group7.prototype = Object.create(Group.prototype);
+Group7.prototype.constructor = Group7;
+
+function Group8() {
+    Group.call(this, 5, 20, 2, 7, 15);
+}
+Group8.prototype = Object.create(Group.prototype);
+Group8.prototype.constructor = Group8;
+
+function Group9() {
+    Group.call(this, 6, 20, 2, 7, 15);
+}
+Group9.prototype = Object.create(Group.prototype);
+Group9.prototype.constructor = Group9;
