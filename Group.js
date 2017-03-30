@@ -61,6 +61,11 @@ Group.prototype.swap = function(i, j) {
 Group.prototype.invalid = function() {
     var old = this.nums[0];
     var sum = old;
+
+    if (sum < 0) {
+        return true;
+    }
+
     for (var i = 1; i < this.total; i++) {
         sum += this.nums[i];
         if (sum < 0 || old == this.nums[i]) {
