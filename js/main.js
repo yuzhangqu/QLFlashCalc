@@ -5,7 +5,6 @@ var headText = "学前组视频心算题 -";
 var gIndex = 1;
 var qIndex = 1;
 var gObjs = new Array(10);
-var gMixObjs = new Array(10);
 
 function repeat(begin, end, time, func) {
     return function() {

@@ -25,7 +25,10 @@ Group.prototype.generate = function(qIndex) {
         }
     } while (this.negativeSum());
 
-    this.answer = this.nums.reduce((a, b) => a + b, 0);
+    this.answer = this.nums.reduce(
+        function(a, b) {
+            return a + b;
+        }, 0);
 
     do {
         for (var i = this.total - 1; i > 0; i--) {
