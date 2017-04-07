@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" class="fullheight">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="fullheight" onload="init();">
+    <div class="card card-inverse text-center fullheight" style="background-color: #333; border-color: #333;">
+        <div class="card-header" style="font-size: 5vw"></div>
+        <div class="card-block" style="display: flex;" onclick="showAnswer();">
+            <h1 class="card-text" style="margin: auto; font-size: 18vw; font-family: Times"></h1>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="row mb-1">
+                <div class="col">
+                    <div id="digit_selector" class="btn-group btn-group-md">
+                        <button type="button" class="btn btn-outline-primary active" value="1">1位</button>
+                        <button type="button" class="btn btn-outline-primary" value="2">2位</button>
+                        <button type="button" class="btn btn-outline-primary" value="3">3位</button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="num_selector" class="btn-group btn-group-md">
+                        <button type="button" class="btn btn-outline-success active" value="3">3笔</button>
+                        <button type="button" class="btn btn-outline-success" value="5">5笔</button>
+                        <button type="button" class="btn btn-outline-success" value="7">7笔</button>
+                        <button type="button" class="btn btn-outline-success" value="9">9笔</button>
+                        <button type="button" class="btn btn-outline-success" value="10">10笔</button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="mix_selector" class="btn-group btn-group-md">
+                        <button type="button" class="btn btn-outline-warning active" value="0">纯加</button>
+                        <button type="button" class="btn btn-outline-warning" value="1">混合</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button id="go" type="button" class="btn btn-outline-danger" onclick="go();"><i class="fa fa-3x fa-play-circle-o" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="js/jquery-3.2.0.min.js "></script>
+    <script src="js/tether.min.js "></script>
+    <script src="js/bootstrap.min.js "></script>
+    <script src="js/jquery.number.min.js "></script>
+    <script src="js/Group.js "></script>
+    <script src="js/main2.js "></script>
+</body>
+
+</html>

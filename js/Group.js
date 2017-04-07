@@ -74,6 +74,7 @@ Group.prototype.invalid = function() {
         if (sum < 0 || old == this.nums[i]) {
             return true;
         }
+        old = this.nums[i];
     }
     return false;
 }
