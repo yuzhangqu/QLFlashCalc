@@ -20,9 +20,11 @@
         <div class="card-footer text-muted">
             <div class="row">
                 <div class="col">
-                    <button id="prev" type="button" class="btn btn-outline-danger disabled" style="font-size: 5vw" onclick="prevGroup();">上一组</button>
-                    <button id="go" type="button" class="btn btn-primary" style="font-size: 5vw" onclick="go();"><i class="fa fa-play-circle-o" aria-hidden="true"></i> 开始</button>
-                    <button id="next" type="button" class="btn btn-outline-danger" style="font-size: 5vw" onclick="nextGroup();">下一组</button>
+                    <button id="prev" type="button" class="btn btn-outline-danger disabled" style="font-size: 5vw" onclick="prevGroup();"><i class="fa fa-fast-backward fa-lg" aria-hidden="true"></i></button>
+                    <button id="prev_mini" type="button" class="btn btn-outline-primary disabled" style="font-size: 5vw" onclick="prevQuiz();"><i class="fa fa-backward fa-lg" aria-hidden="true"></i></button>
+                    <button id="go" type="button" class="btn btn-outline-success" style="font-size: 5vw; min-width: 5vw" onclick="go();"><i id="go_icon" class="fa fa-play-circle-o fa-lg" aria-hidden="true"></i></button>
+                    <button id="next_mini" type="button" class="btn btn-outline-primary" style="font-size: 5vw" onclick="nextQuiz();"><i class="fa fa-forward fa-lg" aria-hidden="true"></i></button>
+                    <button id="next" type="button" class="btn btn-outline-danger" style="font-size: 5vw" onclick="nextGroup();"><i class="fa fa-fast-forward fa-lg" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
