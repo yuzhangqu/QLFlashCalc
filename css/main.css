@@ -92,3 +92,10 @@
 .init.part1.part2 span:nth-of-type(2) {
     opacity: 1;
 }
+
+.card {
+    overflow: hidden;
+}
+.card-block {
+    word-wrap: break-word;
+}

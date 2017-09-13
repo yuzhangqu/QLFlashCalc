@@ -1,57 +1,28 @@
 var index;
 var quizArray;
 var quiz;
-var inputindex;
-var calcanswer;
 
 function init() {
-    index = 0;
+    index = 3;
     quizArray = [];
-    quizArray.push(new Group(1, 10, 1, 0, 10 * 0.6));
-    quizArray.push(new Group(1, 10, 1, 5, 10 * 0.6));
-    quizArray.push(new Group(1, 15, 1, 0, 15 * 0.6));
-    quizArray.push(new Group(1, 15, 1, 7, 15 * 0.6));
-    quizArray.push(new Group(1, 20, 1, 0, 20 * 0.6));
-    quizArray.push(new Group(1, 20, 1, 10, 20 * 0.6));
-    quizArray.push(new Group(2, 5, 1, 0, 5 * 0.7));
-    quizArray.push(new Group(2, 5, 1, 2, 5 * 0.7));
-    quizArray.push(new Group(2, 10, 1, 0, 10 * 0.7));
-    quizArray.push(new Group(2, 10, 1, 5, 10 * 0.7));
-    quizArray.push(new Group(3, 5, 1, 0, 5 * 0.9));
-    quizArray.push(new Group(3, 5, 1, 2, 5 * 0.9));
-    quizArray.push(new Group(3, 10, 1, 0, 10 * 0.9));
-    quizArray.push(new Group(3, 10, 1, 5, 10 * 0.9));
-    quizArray.push(new Group(4, 5, 1, 0, 5));
-    quizArray.push(new Group(4, 5, 1, 2, 5));
-    quizArray.push(new Group(4, 10, 1, 0, 10));
-    quizArray.push(new Group(4, 10, 1, 5, 10));
-    quizArray.push(new Group(5, 5, 1, 0, 5));
-    quizArray.push(new Group(5, 5, 1, 2, 5));
-    var content = "第1题,第2题,第3题,第4题,第5题,第6题,第7题,第8题,第9题,第10题\r\n";
-    quizArray.forEach(function(item, index, array) {
-        item.generate(1);
-        content += item.answer;
-        if (index == 9) {
-            content += "\r\n第11题,第12题,第13题,第14题,第15题,第16题,第17题,第18题,第19题,第20题\r\n";
-        } else if (index != 19) {
-            content += ",";
-        }
-    });
-    $("#saveanswer").attr("href", "data:application/csv;charset=UTF-8," + encodeURI(content));
+    quizArray.push(new Group(2, 20, 1, 0, 20 * 1.0));
+    quizArray.push(new Group(2, 20, 1, 10, 20 * 1.0));
+    quizArray.push(new Group(3, 10, 1, 0, 10 * 1.5));
+    quizArray.push(new Group(3, 10, 1, 5, 10 * 1.5));
+
+    quizArray[0].nums = [23, 60, 57, 67, 16, 59, 50, 40, 41, 86, 19, 34, 31, 66, 26, 90, 84, 68, 17, 58]
+    quizArray[0].answer = 992
+
+    quizArray[1].nums = [92, 24, 91, -23, -78, 20, 63, -48, 25, -15, -33, -45, 13, 61, -17, -12, 35, -95, 89, -94]
+    quizArray[1].answer = 52
+
+    quizArray[2].nums = [574, 286, 910, 703, 473, 486, 795, 690, 775, 381]
+    quizArray[2].answer = 6073
+
+    quizArray[3].nums = [909, -724, 639, 762, -235, -770, 293, -667, 927, -820]
+    quizArray[3].answer = 314
+    
     showTitle();
-
-    $("#go").hide();
-    $(".container").hide();
-    $("#rowinput").hide();
-    inputindex = 0;
-    calcanswer = 0;
-    $('#idinput').keypress(function(event) {
-        var keycode = (event.keyCode ? event.keyCode : event.which);
-        if (keycode == '13') {
-            addin();
-        }
-    });
-
     $(window).resize(adjustInit);
     adjustInit();
 }
@@ -75,7 +46,7 @@ function showQuiz(begin, end) {
 function showCount(begin, end) {
     if (begin == end) {
         $(".card-text").text("");
-        setTimeout(repeat(0, quiz.total, quiz.millisec / quiz.total, showQuiz), 0);
+        setTimeout(repeat(0, quiz.total, quiz.millisec / quiz.total, showQuiz),   );
     } else {
         $(".card-text").text(countStrs[begin]);
         if (begin < end - 1) {
@@ -101,13 +72,7 @@ function showAnswer() {
 }
 
 function showTitle() {
-    $(".card-header").text("武汉市珠心算比赛 - 第" + (index + 1) + "题");
-}
-
-function readytogo() {
-    $("#go").show();
-    $("#saveanswer").hide();
-    return true;
+    $(".card-header").text("武汉市庆龄幼儿园珠心算成果展示");
 }
 
 function go() {
@@ -115,7 +80,7 @@ function go() {
         return false;
     }
 
-    if (index < 20) {
+    if (index < 4) {
         showTitle();
         removetips(25);
         quiz = quizArray[index];
@@ -125,28 +90,28 @@ function go() {
         setTimeout(repeat(0, 3, 1000, showCount), 0);
         setTimeout(repeat(0, 3, 1000, showMask), 0);
     } else {
-        return false;
+        if (index == 4) {
+            $(".card-text").css({ "font-size": "10vw" });
+            $(".card-text").text("74 +367 +1 +53 +2 +40 +4 +470 +640 +45");
+            quiz.answer = 1696;
+            index++;
+        } else if (index == 5) {
+            $(".card-text").css({ "font-size": "10vw" });
+            $(".card-text").text("962 +7 +24 -2 -85 +36 +459 +41 -952 -1");
+            quiz.answer = 489;
+            index++;
+        } else if (index == 6) {
+            $(".card-text").css({ "font-size": "10vw" });
+            $(".card-text").text("58 +19 +43 +81 +10 +59 +61 +30 +82 +98");
+            quiz.answer = 541;
+            index++;
+        } else if (index == 7) {
+            $(".card-text").css({ "font-size": "10vw" });
+            $(".card-text").text("564 +995 +601 +529 +927 +230 +345 +258 +961 +196");
+            quiz.answer = 5606;
+            index++;
+        } else {
+            return false;
+        }
     }
-
-    //$(".card-block").hide();
-    //$("#rowgo").hide();
-    //$(".container").show();
-    //$("#rowinput").show();
-}
-
-function addin() {
-    var i = parseInt($("#idinput").val());
-    if (isNaN(i) || inputindex > 9) {
-        $("#idinput").val("");
-        return false;
-    }
-
-    $("#idinput").val("");
-    $(".inputnumber").eq(inputindex++).number(i);
-    calcanswer += i;
-}
-
-function calc() {
-    $(".answer").addClass("whitetop");
-    $(".answer").number(calcanswer);
 }
