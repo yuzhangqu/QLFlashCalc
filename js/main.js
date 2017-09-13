@@ -38,6 +38,7 @@ function showMask(begin, end) {
 function showtips() {
     $(".card-text").css({ "font-size": "15vw" });
     $(".card-text").text("请写答案");
+    setTimeout(function() { $(".card-text").text(""); }, 1000);
 }
 
 function removetips(sz) {
