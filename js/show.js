@@ -3,7 +3,7 @@ var quizArray;
 var quiz;
 
 function init() {
-    index = 3;
+    index = 0;
     quizArray = [];
     quizArray.push(new Group(2, 20, 1, 0, 20 * 1.0));
     quizArray.push(new Group(2, 20, 1, 10, 20 * 1.0));
@@ -14,7 +14,7 @@ function init() {
     quizArray[0].answer = 992
 
     quizArray[1].nums = [92, 24, 91, -23, -78, 20, 63, -48, 25, -15, -33, -45, 13, 61, -17, -12, 35, -95, 89, -94]
-    quizArray[1].answer = 52
+    quizArray[1].answer = 53
 
     quizArray[2].nums = [574, 286, 910, 703, 473, 486, 795, 690, 775, 381]
     quizArray[2].answer = 6073
