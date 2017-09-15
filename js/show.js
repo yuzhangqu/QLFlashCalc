@@ -92,20 +92,10 @@ function go() {
     } else {
         if (index == 4) {
             $(".card-text").css({ "font-size": "10vw" });
-            $(".card-text").text("74 +367 +1 +53 +2 +40 +4 +470 +640 +45");
-            quiz.answer = 1696;
-            index++;
-        } else if (index == 5) {
-            $(".card-text").css({ "font-size": "10vw" });
             $(".card-text").text("962 +7 +24 -2 -85 +36 +459 +41 -952 -1");
             quiz.answer = 489;
             index++;
-        } else if (index == 6) {
-            $(".card-text").css({ "font-size": "10vw" });
-            $(".card-text").text("58 +19 +43 +81 +10 +59 +61 +30 +82 +98");
-            quiz.answer = 541;
-            index++;
-        } else if (index == 7) {
+        } else if (index == 5) {
             $(".card-text").css({ "font-size": "10vw" });
             $(".card-text").text("564 +995 +601 +529 +927 +230 +345 +258 +961 +196");
             quiz.answer = 5606;
