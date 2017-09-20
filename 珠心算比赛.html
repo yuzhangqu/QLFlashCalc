@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="fullheight">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'flash/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'flash/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'flash/css/main.css' %}">
+</head>
+
+<body class="fullheight" onload="init();">
+    <div class="card card-inverse text-center fullheight blackwhite">
+        <div class="card-header" style="font-size: 5vw"></div>
+        <div class="card-block" style="display: flex;">
+            <div class="init">
+                <span class="spin"></span>
+                <span class="spin"></span>
+            </div>
+            <h1 class="card-text" style="margin: auto; font-size: 25vw; font-family: 'Droid'; color: #FFF"></h1>
+        </div>
+        <div class="container" style="margin: auto; font-size: 6em; font-family: 'Droid'; color: #FFF">
+            <div class="row">
+                <div class="col-4 text-right inputnumber"></div>
+                <div class="col-5 text-right inputnumber"></div>
+                <div class="col-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-4 text-right inputnumber"></div>
+                <div class="col-5 text-right inputnumber"></div>
+                <div class="col-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-4 text-right inputnumber"></div>
+                <div class="col-5 text-right inputnumber"></div>
+                <div class="col-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-4 text-right inputnumber"></div>
+                <div class="col-5 text-right inputnumber"></div>
+                <div class="col-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-4 text-right inputnumber"></div>
+                <div class="col-5 text-right inputnumber"></div>
+                <div class="col-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-7 answer"></div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="row" id="rowgo">
+                <div class="col">
+                    <button id="go" type="button" class="btn btn-outline-secondary" onclick="go();"><i class="fa fa-3x fa-play-circle-o" aria-hidden="true"></i></button>
+                    <a id="saveanswer" class="btn btn-outline-secondary" download="answer.csv" href="#" onclick="readytogo();"><i class="fa fa-3x fa-file-text-o" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="input-group" id="rowinput">
+                <span class="input-group-addon blackwhite"><i class="fa fa-2x fa-circle-o-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+                <input class="form-control blackgrey" type="text" id="idinput">
+                <button type="button" class="btn btn-outline-success" onclick="calc();"><i class="fa fa-calculator fa-fw" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="{% static 'flash/js/jquery-3.2.0.min.js' %}"></script>
+    <script src="{% static 'flash/js/tether.min.js' %}"></script>
+    <script src="{% static 'flash/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'flash/js/jquery.number.min.js' %}"></script>
+    <script src="{% static 'flash/js/Group.js' %}"></script>
+    <script src="{% static 'flash/js/main.js' %}"></script>
+    <script src="{% static 'flash/js/competetion.js' %}"></script>
+    <script src="{% static 'flash/js/beep.js' %}"></script>
+</body>
+
+</html>
