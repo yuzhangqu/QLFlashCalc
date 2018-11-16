@@ -1,4 +1,4 @@
-var timegap = [0, 0.6, 0.7, 0.9, 1];
+var timegap = [0, 0.6, 0.7, 0.9, 1, 1.2];
 var mixStrs = ["纯加", "混合"];
 var headText = "闪电心算 -";
 var digitVal = 1; // 位数
