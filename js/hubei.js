@@ -1,9 +1,10 @@
-var gStrs = ["第{0}组", "第一组", "第二组", "第三组", "第四组", "第五组", "第六组", "第七组", "第八组", "第九组"];
-var qStrs = ["第{1}题", "第1题", "第2题", "第3题"];
-var headText = "学前组视频心算题 -";
+var gStrs = ["第{0}组", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二", "十三", "十四", "十五"];
+var qStrs = ["第{1}题", "1", "2", "3"];
+var headText = "学前组视频心算题 - ";
+var template = gStrs[0] + " " + qStrs[0];
 var gIndex = 1;
 var qIndex = 1;
-var gObjs = new Array(10);
+var gObjs = new Array(16);
 
 function init() {
     showTitle();
@@ -16,6 +17,12 @@ function init() {
     gObjs[7] = new Group7();
     gObjs[8] = new Group8();
     gObjs[9] = new Group9();
+    gObjs[10] = new Group10();
+    gObjs[11] = new Group11();
+    gObjs[12] = new Group12();
+    gObjs[13] = new Group13();
+    gObjs[14] = new Group14();
+    gObjs[15] = new Group15();
 
     $(window).resize(adjustInit);
     adjustInit();
@@ -156,7 +163,7 @@ function resumePlayButton() {
 }
 
 function showTitle() {
-    $(".card-header").text(headText + " " + gStrs[gIndex] + " " + qStrs[qIndex]);
+    $(".card-header").text(headText + String.format(template, gStrs[gIndex], qStrs[qIndex]));
 }
 
 function go() {

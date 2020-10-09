@@ -12,6 +12,20 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "Numbers";
+    src: url('../fonts/AFont.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "KaiTi";
+    src: url('../fonts/Kaiti.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .fullheight {
     height: 100%;
 }
@@ -41,6 +55,10 @@
 
 .negative-hubei {
     padding-right: 6.2vw;
+}
+
+.negative-15vw {
+    padding-right: 4.7vw;
 }
 
 .init {
@@ -91,11 +109,4 @@
 
 .init.part1.part2 span:nth-of-type(2) {
     opacity: 1;
-}
-
-.card {
-    overflow: hidden;
-}
-.card-block {
-    word-wrap: break-word;
 }

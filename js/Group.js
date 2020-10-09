@@ -92,55 +92,91 @@ Group.prototype.invalid = function() {
 }
 
 function Group1() {
-    Group.call(this, 2, 10, 3, 3, 7);
+    Group.call(this, 2, 5, 2, 2, 4);
 }
 Group1.prototype = Object.create(Group.prototype);
 Group1.prototype.constructor = Group1;
 
 function Group2() {
-    Group.call(this, 2, 15, 3, 5, 10);
+    Group.call(this, 2, 10, 2, 3, 7);
 }
 Group2.prototype = Object.create(Group.prototype);
 Group2.prototype.constructor = Group2;
 
 function Group3() {
-    Group.call(this, 3, 10, 2, 3, 9);
+    Group.call(this, 2, 15, 2, 5, 10);
 }
 Group3.prototype = Object.create(Group.prototype);
 Group3.prototype.constructor = Group3;
 
 function Group4() {
-    Group.call(this, 3, 20, 2, 7, 15);
+    Group.call(this, 3, 5, 2, 2, 5);
 }
 Group4.prototype = Object.create(Group.prototype);
 Group4.prototype.constructor = Group4;
 
 function Group5() {
-    Group.call(this, 4, 10, 2, 3, 10);
+    Group.call(this, 3, 10, 2, 3, 10);
 }
 Group5.prototype = Object.create(Group.prototype);
 Group5.prototype.constructor = Group5;
 
 function Group6() {
-    Group.call(this, 4, 20, 2, 7, 15);
+    Group.call(this, 3, 15, 2, 5, 13);
 }
 Group6.prototype = Object.create(Group.prototype);
 Group6.prototype.constructor = Group6;
 
 function Group7() {
-    Group.call(this, 5, 10, 2, 3, 9);
+    Group.call(this, 4, 5, 2, 2, 5);
 }
 Group7.prototype = Object.create(Group.prototype);
 Group7.prototype.constructor = Group7;
 
 function Group8() {
-    Group.call(this, 5, 20, 2, 7, 15);
+    Group.call(this, 4, 10, 2, 3, 10);
 }
 Group8.prototype = Object.create(Group.prototype);
 Group8.prototype.constructor = Group8;
 
 function Group9() {
-    Group.call(this, 6, 20, 2, 7, 15);
+    Group.call(this, 4, 15, 2, 5, 13);
 }
 Group9.prototype = Object.create(Group.prototype);
 Group9.prototype.constructor = Group9;
+
+function Group10() {
+    Group.call(this, 5, 5, 2, 2, 5);
+}
+Group10.prototype = Object.create(Group.prototype);
+Group10.prototype.constructor = Group10;
+
+function Group11() {
+    Group.call(this, 5, 10, 2, 3, 10);
+}
+Group11.prototype = Object.create(Group.prototype);
+Group11.prototype.constructor = Group11;
+
+function Group12() {
+    Group.call(this, 5, 15, 2, 5, 13);
+}
+Group12.prototype = Object.create(Group.prototype);
+Group12.prototype.constructor = Group12;
+
+function Group13() {
+    Group.call(this, 6, 10, 2, 3, 10);
+}
+Group13.prototype = Object.create(Group.prototype);
+Group13.prototype.constructor = Group13;
+
+function Group14() {
+    Group.call(this, 6, 15, 2, 5, 13);
+}
+Group14.prototype = Object.create(Group.prototype);
+Group14.prototype.constructor = Group14;
+
+function Group15() {
+    Group.call(this, 6, 20, 2, 7, 16);
+}
+Group15.prototype = Object.create(Group.prototype);
+Group15.prototype.constructor = Group15;
